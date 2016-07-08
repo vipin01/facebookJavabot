@@ -91,8 +91,11 @@ public class JavaAPIBotServlet extends HttpServlet {
 							}
 							Message templateMessage = getTemplateMessage(temp,link);
 							// build send client and send message
-							FacebookClient sendClient = new DefaultFacebookClient(
+						/*	FacebookClient sendClient = new DefaultFacebookClient(
 									"EAAOlIyo3LTMBAApctladjzZAoZCsInwCe2QI7IbeFGFtWSYe3dWAAogZBYjdRLmjsQGfPAMLZB9FBCJSJK2VqdkKkZAkivlplQLeU3d98xstN84VIEpJ4rP5KmnC9IKUwR7oSY83knB0LYMZBOQ87R9GkWMDZBeRJzZApbfqjBb4YQZDZD",
+									Version.VERSION_2_6);*/
+							FacebookClient sendClient = new DefaultFacebookClient(
+									"EAAG3bIDZBeuEBAEP2qUYiYFPAlCfPusWu0knMXuFi2EZB0nFvdvIW3sunQMiNf2Vnm0sHgo2ZARqy0ht4lBy0lFMtH5ANk6I5oi4vkecI9gtODoJHY8E27OKpsdLJdcPux5xYRZAcUJnSvHq0sLdFiDYBoZAfD5mINbRVNtcLkAZDZD",
 									Version.VERSION_2_6);
 						
 							sendClient.publish("me/messages", GraphResponse.class,
@@ -118,8 +121,11 @@ public class JavaAPIBotServlet extends HttpServlet {
 						Message templateMessage = getTemplateMessage(temp,link);
 
 						// build send client and send message
-						FacebookClient sendClient = new DefaultFacebookClient(
+						/*FacebookClient sendClient = new DefaultFacebookClient(
 								"EAAOlIyo3LTMBAApctladjzZAoZCsInwCe2QI7IbeFGFtWSYe3dWAAogZBYjdRLmjsQGfPAMLZB9FBCJSJK2VqdkKkZAkivlplQLeU3d98xstN84VIEpJ4rP5KmnC9IKUwR7oSY83knB0LYMZBOQ87R9GkWMDZBeRJzZApbfqjBb4YQZDZD",
+								Version.VERSION_2_6);*/
+						FacebookClient sendClient = new DefaultFacebookClient(
+								"EAAG3bIDZBeuEBAEP2qUYiYFPAlCfPusWu0knMXuFi2EZB0nFvdvIW3sunQMiNf2Vnm0sHgo2ZARqy0ht4lBy0lFMtH5ANk6I5oi4vkecI9gtODoJHY8E27OKpsdLJdcPux5xYRZAcUJnSvHq0sLdFiDYBoZAfD5mINbRVNtcLkAZDZD",
 								Version.VERSION_2_6);
 					
 						sendClient.publish("me/messages", GraphResponse.class, Parameter.with("recipient", recipient),
@@ -149,8 +155,8 @@ public class JavaAPIBotServlet extends HttpServlet {
 
 		WebResource.Builder builder = webResource.queryParams(queryParams).accept("*/*");
 
-		builder.header(HttpHeaders.AUTHORIZATION, "Bearer " + "615edc6548374cc9a9a0672223be7fe4");
-	
+		//builder.header(HttpHeaders.AUTHORIZATION, "Bearer " + "615edc6548374cc9a9a0672223be7fe4");
+		builder.header(HttpHeaders.AUTHORIZATION, "Bearer " + "cfbaf6d6ce674487ba6d7844d73fadca");
 		ClientResponse response = builder.get(ClientResponse.class);
 
 		System.out.println("Response is " + response.toString());
@@ -192,7 +198,8 @@ public class JavaAPIBotServlet extends HttpServlet {
 			for (String msg : splitMessage) {
 				PostbackButton postback = new PostbackButton("Answer", msg);
 				Bubble bubble = new Bubble("Welcome to Barclaycard FAQs");
-				bubble.setImageUrl("http://53bde1b4.ngrok.io/facebookJavabot-0.0.1-SNAPSHOT/images/barclaycard_logo.png");
+				bubble.setImageUrl("https://i.imgsafe.org/df4be6fe74.png");
+				//bubble.setImageUrl("http://53bde1b4.ngrok.io/facebookJavabot-0.0.1-SNAPSHOT/images/barclaycard_logo.png");
 				bubble.setItemUrl(link);
 				bubble.setSubtitle(msg);
 				bubble.addButton(postback);
