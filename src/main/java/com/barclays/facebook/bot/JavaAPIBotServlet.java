@@ -192,7 +192,7 @@ public class JavaAPIBotServlet extends HttpServlet {
 			for (String msg : splitMessage) {
 				PostbackButton postback = new PostbackButton("Answer", msg);
 				Bubble bubble = new Bubble("Welcome to Barclaycard FAQs");
-				bubble.setImageUrl("https://i.imgsafe.org/df4be6fe74.png");
+				bubble.setImageUrl("http://53bde1b4.ngrok.io/facebookJavabot-0.0.1-SNAPSHOT/images/barclaycard_logo.png");
 				bubble.setItemUrl(link);
 				bubble.setSubtitle(msg);
 				bubble.addButton(postback);
