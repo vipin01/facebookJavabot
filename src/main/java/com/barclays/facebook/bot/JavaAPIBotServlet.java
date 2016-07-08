@@ -46,12 +46,9 @@ public class JavaAPIBotServlet extends HttpServlet {
 	protected void doGet(final HttpServletRequest request, final HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("inside doGet() method");
-		// response.getWriter().println("hello");
+	
 
 		if (request.getParameter("hub.verify_token").equalsIgnoreCase("verify_token")) {
-			// if
-			// (request.getParameter("hub.verify_token").equalsIgnoreCase("verify_code"))
-			// {
 			response.getWriter().append(request.getParameter("hub.challenge"));
 		} else {
 			response.getWriter().append("Served at: ").append(request.getContextPath());
@@ -83,10 +80,8 @@ public class JavaAPIBotServlet extends HttpServlet {
 						final AIResponse aiResponse = gson.fromJson(message, AIResponse.class);
 						// check message
 						if (item.getMessage() != null && item.getMessage().getText() != null) {
-							// create simple text message
-							// Message simpleTextMessage = new
-							// Message(aiResponse.getResult().getFulfillment().getSpeech());
 							String temp = aiResponse.getResult().getFulfillment().getSpeech();
+							String link = aiResponse.getResult().getAction();
 							System.out.printf("Temp %s", temp);
 							if (temp == null || temp.isEmpty()) {
 								System.out.println("Temp is empty");
@@ -94,14 +89,12 @@ public class JavaAPIBotServlet extends HttpServlet {
 								final AIResponse aiResponse2 = gson.fromJson(message2, AIResponse.class);
 								temp = aiResponse2.getResult().getFulfillment().getSpeech();
 							}
-							Message templateMessage = getTemplateMessage(temp);
+							Message templateMessage = getTemplateMessage(temp,link);
 							// build send client and send message
 							FacebookClient sendClient = new DefaultFacebookClient(
 									"EAAOlIyo3LTMBAApctladjzZAoZCsInwCe2QI7IbeFGFtWSYe3dWAAogZBYjdRLmjsQGfPAMLZB9FBCJSJK2VqdkKkZAkivlplQLeU3d98xstN84VIEpJ4rP5KmnC9IKUwR7oSY83knB0LYMZBOQ87R9GkWMDZBeRJzZApbfqjBb4YQZDZD",
 									Version.VERSION_2_6);
-							// FacebookClient sendClient = new
-							// DefaultFacebookClient("EAAG3bIDZBeuEBAOJkn2qxfB9w5ZByTIoa2RHCFFP1uGYD9yX9aFK8OscnjwAk4mjIy0hbhzWrZCZC1VRlCoRHl5Pkz7XxZCp31Ajx9aNoAKojjASIzmxsdNEVJtpSYhF5OnIboCFjEwwBGxZCMur0cXREaRoaCbssUypZCyVICeQwZDZD",
-							// Version.VERSION_2_6);
+						
 							sendClient.publish("me/messages", GraphResponse.class,
 									Parameter.with("recipient", recipient), Parameter.with("message", templateMessage));
 						}
@@ -113,25 +106,25 @@ public class JavaAPIBotServlet extends HttpServlet {
 						final Gson gson = GsonFactory.getGson();
 						final AIResponse aiResponse = gson.fromJson(message, AIResponse.class);
 						String temp = aiResponse.getResult().getFulfillment().getSpeech();
+						String link = aiResponse.getResult().getAction();
 						System.out.printf("Temp %s", temp);
 						if (temp == null || temp.isEmpty()) {
 							System.out.println("Temp is empty");
 							String message2 = fetchQueryResponse("none");
 							final AIResponse aiResponse2 = gson.fromJson(message2, AIResponse.class);
 							temp = aiResponse2.getResult().getFulfillment().getSpeech();
+							link = aiResponse2.getResult().getAction();
 						}
-						Message templateMessage = getTemplateMessage(temp);
+						Message templateMessage = getTemplateMessage(temp,link);
 
 						// build send client and send message
 						FacebookClient sendClient = new DefaultFacebookClient(
 								"EAAOlIyo3LTMBAApctladjzZAoZCsInwCe2QI7IbeFGFtWSYe3dWAAogZBYjdRLmjsQGfPAMLZB9FBCJSJK2VqdkKkZAkivlplQLeU3d98xstN84VIEpJ4rP5KmnC9IKUwR7oSY83knB0LYMZBOQ87R9GkWMDZBeRJzZApbfqjBb4YQZDZD",
 								Version.VERSION_2_6);
-						// FacebookClient sendClient = new
-						// DefaultFacebookClient("EAAG3bIDZBeuEBAOJkn2qxfB9w5ZByTIoa2RHCFFP1uGYD9yX9aFK8OscnjwAk4mjIy0hbhzWrZCZC1VRlCoRHl5Pkz7XxZCp31Ajx9aNoAKojjASIzmxsdNEVJtpSYhF5OnIboCFjEwwBGxZCMur0cXREaRoaCbssUypZCyVICeQwZDZD",
-						// Version.VERSION_2_6);
+					
 						sendClient.publish("me/messages", GraphResponse.class, Parameter.with("recipient", recipient),
 								Parameter.with("message", templateMessage));
-						// }
+						
 					}
 				}
 			}
@@ -157,9 +150,7 @@ public class JavaAPIBotServlet extends HttpServlet {
 		WebResource.Builder builder = webResource.queryParams(queryParams).accept("*/*");
 
 		builder.header(HttpHeaders.AUTHORIZATION, "Bearer " + "615edc6548374cc9a9a0672223be7fe4");
-		// builder.header(HttpHeaders.AUTHORIZATION, "Bearer
-		// "+"e278cd5e83e54ca2983d8bbf750a45b7");
-
+	
 		ClientResponse response = builder.get(ClientResponse.class);
 
 		System.out.println("Response is " + response.toString());
@@ -172,25 +163,45 @@ public class JavaAPIBotServlet extends HttpServlet {
 
 	}
 
-	public Message getTemplateMessage(String textMessage) {
+	public Message getTemplateMessage(String textMessage,String link) {
 		GenericTemplatePayload genericPayload = null;
+		ButtonTemplatePayload genericButtonPayload = null;
 		TemplateAttachment template = null;
 		Message message = null;
 		String[] splitMessage = textMessage.split(":");
 		if (splitMessage.length > 1) {
+			if(splitMessage[0].equals("$")){
+				ButtonTemplatePayload payload = new ButtonTemplatePayload();
+				payload.setText("Hi, How may I help you today?");
+				int length=splitMessage.length;
+				System.out.println(length);
+				int a;
+				for(a=1;a<length;++a){
+					System.out.println(splitMessage[a]);
+					PostbackButton postbackButton = new PostbackButton(splitMessage[a],splitMessage[a]);
+					payload.addButton(postbackButton);
+
+				}
+				
+				template = new TemplateAttachment(payload);
+				message = new Message(template);
+				
+			}
+			else {
 			genericPayload = new GenericTemplatePayload();
 			for (String msg : splitMessage) {
 				PostbackButton postback = new PostbackButton("Answer", msg);
 				Bubble bubble = new Bubble("Welcome to Barclaycard FAQs");
-				// bubble.setImageUrl("http://ba41c57c.ngrok.io/facebookJavabot/images/barclaycard-logo.png");
-				bubble.setImageUrl("http://53bde1b4.ngrok.io/facebookJavabot-0.0.1-SNAPSHOT/images/barclaycard_logo.png");
-				bubble.setItemUrl("http://help.barclaycard.co.uk/brochure/account_services/online-pin/");
+				bubble.setImageUrl("https://i.imgsafe.org/df4be6fe74.png");
+				bubble.setItemUrl(link);
 				bubble.setSubtitle(msg);
 				bubble.addButton(postback);
 				genericPayload.addBubble(bubble);
+				
 			}
 			template = new TemplateAttachment(genericPayload);
 			message = new Message(template);
+			}
 		} else {
 			if (textMessage.length() > 320)
 				message = new Message(textMessage.substring(0, 320));
