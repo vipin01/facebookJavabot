@@ -11,6 +11,14 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>BotServlet</servlet-name>
-    <url-pattern>/webhook</url-pattern>
+    <url-pattern>/uk/webhook</url-pattern>
+  </servlet-mapping>
+   <servlet-mapping>
+    <servlet-name>BotServlet</servlet-name>
+    <url-pattern>/us/webhook</url-pattern>
+  </servlet-mapping>
+   <servlet-mapping>
+    <servlet-name>BotServlet</servlet-name>
+    <url-pattern>/de/webhook</url-pattern>
   </servlet-mapping>
 </web-app>
