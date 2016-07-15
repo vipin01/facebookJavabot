@@ -21,4 +21,5 @@
     <servlet-name>BotServlet</servlet-name>
     <url-pattern>/de/webhook</url-pattern>
   </servlet-mapping>
+
 </web-app>
