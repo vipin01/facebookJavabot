@@ -1,0 +1,76 @@
+for(int i=0;i<100000;i++){ db.users.insert({"i":i,"username":"user"+i,"age":Math.floor(Math.random()*120),"created" : new Date(),"city":"Bangalore"+i}); }
+
+for(i=0;i<1;i++){ db.customers.insert({i:i,customername:"customer"+i,age:Math.floor(Math.random()*120),created: new Date(),city:"Bangalore"+i}); }
+
+for(i=0;i<100000;i++){ db.users.insert({i:i,username:"user"+i,age:Math.floor(Math.random()*120),created: new Date(),city:"Bangalore"+i}); }
+
+
+ubuntu@ec2-52-32-65-88.us-west-2.compute.amazonaws.com
+
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
+
+echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.0.list
+
+sudo apt-get update
+
+
+sudo apt-get install -y mongodb-org
+
+echo "mongodb-org hold" | sudo dpkg --set-selections
+echo "mongodb-org-server hold" | sudo dpkg --set-selections
+echo "mongodb-org-shell hold" | sudo dpkg --set-selections
+echo "mongodb-org-mongos hold" | sudo dpkg --set-selections
+echo "mongodb-org-tools hold" | sudo dpkg --set-selections
+
+
+$ sudo /usr/bin/mongod --dbpath /home/ubuntu/db/data
+
+
+com.mongodb.MongoTimeoutException: Timed out after 30000 ms while waiting for a server that matches ReadPreferenceServerSelector{readPreference=primary}. Client view of cluster state is {type=UNKNOWN, servers=[{address=52.32.65.88:27017, type=UNKNOWN, state=CONNECTING, exception={com.mongodb.MongoSocketOpenException: Exception opening socket}, caused by {java.net.SocketTimeoutException: connect timed out}}]
+9374593.
+
+
+
+944528
+
+18002099100 -Thomas cook
+9591386643- Raghu -080 49004800
+
+https://ec2-52-17-108-9.eu-west-1.compute.amazonaws.com/facebookJavabot-0.0.1-SNAPSHOT/webhook
+
+ curl localhost:4040/api/tunnels
+ 
+
+
+
+https://80b919b5.ngrok.io
+
+https://8ff4be10.ngrok.io/facebookJavabot-0.0.1-SNAPSHOT/webhook -aws
+
+https://javafbot.herokuapp.com/webhook -heroku
+
+https://69f82829.ngrok.io/facebookJavabot/us/webhook -local
+
+
+Token for Love of Learning : EAARItObxyDwBAIJJvdWp2S3ws6rKpLXXUr9p87RSnubdO8lzLHnO72Xp3pCmhst85hEbS5EPGtugXtDUbSpILZAP4BqNEFrRsd2j8M6vPvczn8T2nODWQiLKA3MmfTfwYIa2N0FtyE4yFU3aABUMoXsev0WpGx4zzymbFkAZDZD
+https://www.facebook.com/flyingbot/
+
+
+abhijit.patil2@barclays.com
+chatbot1010
+
+ubuntu@ec2-52-49-195-234.eu-west-1.compute.amazonaws.com
+TheBOT:EAAG3bIDZBeuEBAABp4piLpZAwxUpfdyZCExrT9eZBPCOycsAMHGHo4afRg0ZCDTWrK5MoOqJ3MameRjZBknbeTcdXAiXCUwPUannI0STmeRA0DMZB7V40DsVCJZCTadM2gX1nDQfnW7mfir3XmaZBHANFtNUWxqvU7TjiDO4YdshL2AZDZD
+API.AI for TheBot:cfbaf6d6ce674487ba6d7844d73fadca
+
+https://8ff4be10.ngrok.io/facebookJavabot-0.0.1-SNAPSHOT/uk/webhook
+su password is :bitnami
+
+heroku:
+vibhorverma.v2@gmail.com
+qwertyuiop1
+
+API.AI:
+Username : chatbotfbbarca@gmail.com
+Password   : fbchatbot
+Agent          : Chatbot_menu
