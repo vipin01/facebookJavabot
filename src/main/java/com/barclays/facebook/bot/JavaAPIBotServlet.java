@@ -112,7 +112,7 @@ public class JavaAPIBotServlet extends HttpServlet {
 
 	private static final String HELP_QUERY = "help_query";
 
-	private static final String IMG_URL = "https://i.imgsafe.org/df4be6fe74.png";
+	private static final String IMG_URL = "https://4d92e6b8.ngrok.io/facebookJavabot-0.0.1-SNAPSHOT/images/barclaycard_50.png";
 
 	private static final String WELCOME_TXT = "welcome";
 
@@ -235,11 +235,11 @@ public class JavaAPIBotServlet extends HttpServlet {
 								Version.VERSION_2_6);
 
 						try {
-
+							
 							sendClient.publish(ME_MESSAGES, GraphResponse.class, Parameter.with(RECIPIENT, recipient),
 
 									Parameter.with(MESSAGE, templateMessage));
-
+							
 						} catch (Throwable th) {
 
 							th.printStackTrace();
@@ -282,10 +282,11 @@ public class JavaAPIBotServlet extends HttpServlet {
 								Version.VERSION_2_6);
 
 						try {
-
+							
 							sendClient.publish(ME_MESSAGES, GraphResponse.class, Parameter.with(RECIPIENT, recipient),
 
 									Parameter.with(MESSAGE, templateMessage));
+							
 
 						} catch (Throwable th) {
 
@@ -356,8 +357,12 @@ public class JavaAPIBotServlet extends HttpServlet {
 			if (splitMessage[0].equals(BUTTON_TMP_IDENTIFIER)) {
 
 				ButtonTemplatePayload payload = new ButtonTemplatePayload();
+				
+				payload.setText(splitMessage[1]);
+				
+				logger.debug("Heading Text " + splitMessage[1]);
 
-				payload.setText(factory.getString(HELP_QUERY));
+				//payload.setText(factory.getString(HELP_QUERY));
 
 				int length = splitMessage.length;
 
@@ -365,7 +370,7 @@ public class JavaAPIBotServlet extends HttpServlet {
 
 				int a;
 
-				for (a = 1; a < length; ++a) {
+				for (a = 2; a < length; ++a) {
 
 					logger.debug(splitMessage[a]);
 
