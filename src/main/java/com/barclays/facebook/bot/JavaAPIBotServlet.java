@@ -112,7 +112,7 @@ public class JavaAPIBotServlet extends HttpServlet {
 
 	private static final String HELP_QUERY = "help_query";
 
-	private static final String IMG_URL = "https://4d92e6b8.ngrok.io/facebookJavabot-0.0.1-SNAPSHOT/images/barclaycard_50.png";
+	private static final String IMG_URL = "https://8ff4be10.ngrok.io/facebookJavabot-0.0.1-SNAPSHOT/images/barclaycard_50_resized.jpg";
 
 	private static final String WELCOME_TXT = "welcome";
 
