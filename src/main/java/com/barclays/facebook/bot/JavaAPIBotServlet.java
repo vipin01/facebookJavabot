@@ -1,7 +1,8 @@
 package com.barclays.facebook.bot;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-
+import java.io.InputStreamReader;
 import java.util.ResourceBundle;
 
 import javax.servlet.ServletException;
@@ -429,5 +430,25 @@ public class JavaAPIBotServlet extends HttpServlet {
 		return message;
 
 	}
+	
+	public static void pythonCode(){
+		
+		try {
+			String s = "crade";
+			int number1 = 564;
+			int number2 = 32;
 
+			ProcessBuilder pb = new ProcessBuilder("python", "chat_bot_nlp_combined.py", ""+s,"");
+			Process p = pb.start();
+
+			BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+			// int ret = new Integer(in.readLine()).intValue();
+			System.out.println("value is : " + in.readLine());
+		}
+		
+		catch (Exception e) {
+			System.out.println(e);
+			}
+
+	}
 }
